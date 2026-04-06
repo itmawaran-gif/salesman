@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,147 +23,60 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: #f4fbf7;
-            margin: 0;
-            transition: all 0.3s;
-        }
-
+        body { font-family: 'Tajawal', sans-serif; background: #f4fbf7; margin: 0; transition: all 0.3s; }
+        
         #splashScreen {
-            position: fixed;
-            inset: 0;
-            background: #B0E4CC;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0; background: #B0E4CC; z-index: 1000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-
-        #loginPage,
-        #dashboard {
-            display: none;
-        }
-
-        .custom-card {
-            background: linear-gradient(135deg, #B0E4CC, #ffffff);
-            border: 2px solid #ffffff;
-            border-radius: 2rem;
+        #loginPage, #dashboard { display: none; }
+        
+        .custom-card { 
+            background: linear-gradient(135deg, #B0E4CC, #ffffff); 
+            border: 2px solid #ffffff; 
+            border-radius: 2rem; 
             box-shadow: 0 10px 20px rgba(9, 20, 19, 0.08);
         }
-
-        .gauge-svg {
-            width: 100%;
-            height: auto;
-        }
-
+        .gauge-svg { width: 100%; height: auto; }
         .needle {
             transform-origin: 50px 50px;
             transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: rotate(0deg);
+            transform: rotate(0deg); 
         }
-
         .slider-track {
-            height: 10px;
-            background: #d1e8dd;
-            border-radius: 999px;
-            position: relative;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 4px;
+            height: 10px; background: #d1e8dd; border-radius: 999px; position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); margin-top: 4px;
         }
-
         .slider-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #285A48, #408A71);
-            border-radius: 999px;
-            position: absolute;
-            left: 0;
-            top: 0;
+            height: 100%; background: linear-gradient(90deg, #285A48, #408A71); border-radius: 999px;
+            position: absolute; left: 0; top: 0;
         }
-
         .slider-thumb {
-            position: absolute;
-            right: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            background: #ffffff;
-            border: 2px solid #408A71;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: absolute; right: -8px; top: 50%; transform: translateY(-50%);
+            width: 16px; height: 16px; background: #ffffff; border: 2px solid #408A71;
+            border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-
         .slider-label {
-            position: absolute;
-            top: -22px;
-            right: -12px;
-            background: white;
-            padding: 1px 6px;
-            border-radius: 8px;
-            font-size: 9px;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            white-space: nowrap;
+            position: absolute; top: -22px; right: -12px; background: white;
+            padding: 1px 6px; border-radius: 8px; font-size: 9px; font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;
         }
-
-        .input-soft {
-            background: #eef8f3;
-            border: 1px solid #B0E4CC;
-            border-radius: 9999px;
-            padding: 0.8rem;
-            text-align: center;
-            width: 100%;
-            outline: none;
-        }
-
-        select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        .toast-enter {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        .toast-active {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        .input-soft { background: #eef8f3; border: 1px solid #B0E4CC; border-radius: 9999px; padding: 0.8rem; text-align: center; width: 100%; outline: none; }
+        select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+        .toast-enter { transform: translateY(-100%); opacity: 0; }
+        .toast-active { transform: translateY(0); opacity: 1; }
 
         .client-row-agent {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 8px;
-            border-bottom: 1px solid #B0E4CC;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 8px; border-bottom: 1px solid #B0E4CC;
         }
-
-        .client-row-agent:last-child {
-            border-bottom: none;
-        }
-
+        .client-row-agent:last-child { border-bottom: none; }
         .visits-badge {
-            padding: 3px 12px;
-            border-radius: 9999px;
-            font-weight: bold;
-            font-size: 13px;
+            padding: 3px 12px; border-radius: 9999px; font-weight: bold; font-size: 13px;
             white-space: nowrap;
         }
-
-        .visits-badge.done {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .visits-badge.zero {
-            background: #fee2e2;
-            color: #991b1b;
-        }
+        .visits-badge.done { background: #d1fae5; color: #065f46; }
+        .visits-badge.zero { background: #fee2e2; color: #991b1b; }
 
         /* ─── Camera UI ─── */
         #cameraZone {
@@ -174,13 +86,11 @@
             background: #eef8f3;
             transition: border-color 0.2s, background 0.2s;
         }
-
         #cameraZone.has-image {
             border-color: #408A71;
             border-style: solid;
             background: #d4f5e6;
         }
-
         #capturedPreview {
             display: none;
             width: 100%;
@@ -190,7 +100,6 @@
             margin-top: 10px;
             border: 2px solid #408A71;
         }
-
         #cameraBtn {
             width: 100%;
             display: flex;
@@ -208,12 +117,7 @@
             box-shadow: 0 4px 12px rgba(40, 90, 72, 0.25);
             transition: transform 0.15s, box-shadow 0.15s;
         }
-
-        #cameraBtn:active {
-            transform: scale(0.97);
-            box-shadow: none;
-        }
-
+        #cameraBtn:active { transform: scale(0.97); box-shadow: none; }
         #removeCameraBtn {
             display: none;
             background: none;
@@ -226,7 +130,6 @@
             text-align: center;
             width: 100%;
         }
-
         .upload-progress {
             display: none;
             align-items: center;
@@ -240,756 +143,718 @@
             color: #285A48;
             margin-top: 8px;
         }
-
         .spinner {
-            width: 16px;
-            height: 16px;
+            width: 16px; height: 16px;
             border: 2px solid #B0E4CC;
             border-top-color: #285A48;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             flex-shrink: 0;
         }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-
 <body class="p-4 relative">
 
-    <div id="notificationToast"
-        class="fixed top-4 left-1/2 -translate-x-1/2 w-11/12 max-w-sm bg-brand-900 text-white p-4 rounded-2xl shadow-2xl z-50 flex justify-between items-center transition-all duration-500 toast-enter">
-        <div class="flex items-center gap-3">
-            <span class="text-2xl">🔔</span>
-            <span id="notifMessage" class="font-bold text-sm"></span>
+<div id="notificationToast" class="fixed top-4 left-1/2 -translate-x-1/2 w-11/12 max-w-sm bg-brand-900 text-white p-4 rounded-2xl shadow-2xl z-50 flex justify-between items-center transition-all duration-500 toast-enter">
+    <div class="flex items-center gap-3">
+        <span class="text-2xl">🔔</span>
+        <span id="notifMessage" class="font-bold text-sm"></span>
+    </div>
+    <button onclick="closeNotification()" class="text-brand-100 font-bold text-xl">&times;</button>
+</div>
+
+<div id="splashScreen">
+    <div class="custom-card p-10 mb-4">
+        <img src="Asset_1.png" alt="Logo" class="w-40 mx-auto">
+    </div>
+    <div class="text-brand-900 font-bold animate-pulse" data-i18n="loading">جاري التحديث...</div>
+</div>
+
+<div class="max-w-md mx-auto space-y-4">
+
+    <div id="loginPage" class="mt-10 space-y-6">
+        <div class="custom-card p-4 text-center">
+            <img src="Asset_1.png" alt="Logo" class="w-32 mx-auto">
         </div>
-        <button onclick="closeNotification()" class="text-brand-100 font-bold text-xl">&times;</button>
+        <div class="px-6 space-y-4 text-center">
+            <p class="font-bold text-brand-900 text-xl" data-i18n="agent">المندوب</p>
+            <input type="text" id="user" class="input-soft shadow-inner">
+            <p class="font-bold text-brand-900 text-xl" data-i18n="password">الرقم السري</p>
+            <input type="password" id="pass" class="input-soft shadow-inner">
+            <button onclick="login()" id="loginBtn" class="w-full bg-brand-700 text-white py-4 rounded-full font-bold shadow-lg mt-4" data-i18n="loginBtn">دخول</button>
+        </div>
     </div>
 
-    <div id="splashScreen">
-        <div class="custom-card p-10 mb-4">
-            <img src="Asset_1.png" alt="Logo" class="w-40 mx-auto">
-        </div>
-        <div class="text-brand-900 font-bold animate-pulse" data-i18n="loading">جاري التحديث...</div>
-    </div>
-
-    <div class="max-w-md mx-auto space-y-4">
-
-        <div id="loginPage" class="mt-10 space-y-6">
-            <div class="custom-card p-4 text-center">
-                <img src="Asset_1.png" alt="Logo" class="w-32 mx-auto">
-            </div>
-            <div class="px-6 space-y-4 text-center">
-                <p class="font-bold text-brand-900 text-xl" data-i18n="agent">المندوب</p>
-                <input type="text" id="user" class="input-soft shadow-inner">
-                <p class="font-bold text-brand-900 text-xl" data-i18n="password">الرقم السري</p>
-                <input type="password" id="pass" class="input-soft shadow-inner">
-                <button onclick="login()" id="loginBtn"
-                    class="w-full bg-brand-700 text-white py-4 rounded-full font-bold shadow-lg mt-4"
-                    data-i18n="loginBtn">دخول</button>
-            </div>
+    <div id="dashboard" class="space-y-4">
+        <div class="custom-card py-4 text-center">
+            <img src="Asset_1.png" alt="Logo" class="w-32 mx-auto">
         </div>
 
-        <div id="dashboard" class="space-y-4">
-            <div class="custom-card py-4 text-center">
-                <img src="Asset_1.png" alt="Logo" class="w-32 mx-auto">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="custom-card p-4 flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition-shadow" onclick="showGaugeModal()">
+                <svg viewBox="0 0 100 55" class="gauge-svg">
+                    <defs>
+                        <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#B0E4CC" />
+                            <stop offset="50%" style="stop-color:#408A71" />
+                            <stop offset="100%" style="stop-color:#285A48" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 12 50 A 39 39 0 0 1 90 50 A 6 6 0 0 1 78 50 A 33 33 0 0 0 12 50 Z" fill="#e2e8f0" opacity="0.4"/>
+                    <path d="M 12 50 A 39 39 0 0 1 90 50 A 6 6 0 0 1 78 50 A 33 33 0 0 0 12 50 Z" fill="url(#gaugeGrad)"/>
+                    <line id="needle" x1="50" y1="50" x2="15" y2="50" stroke="#091413" stroke-width="3" stroke-linecap="round" class="needle"/>
+                    <circle cx="50" cy="50" r="3" fill="#ffffff" stroke="#091413" stroke-width="1.5"/>
+                </svg>
+                <div class="text-2xl font-bold text-brand-900 mt-2"><span id="perfVal">0</span> %</div>
+                <div class="text-[10px] text-brand-500 mt-1" data-i18n="clickDetails">اضغط للتفاصيل</div>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div class="custom-card p-4 flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition-shadow"
-                    onclick="showGaugeModal()">
-                    <svg viewBox="0 0 100 55" class="gauge-svg">
-                        <defs>
-                            <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#B0E4CC" />
-                                <stop offset="50%" style="stop-color:#408A71" />
-                                <stop offset="100%" style="stop-color:#285A48" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M 12 50 A 39 39 0 0 1 90 50 A 6 6 0 0 1 78 50 A 33 33 0 0 0 12 50 Z" fill="#e2e8f0"
-                            opacity="0.4" />
-                        <path d="M 12 50 A 39 39 0 0 1 90 50 A 6 6 0 0 1 78 50 A 33 33 0 0 0 12 50 Z"
-                            fill="url(#gaugeGrad)" />
-                        <line id="needle" x1="50" y1="50" x2="15" y2="50" stroke="#091413" stroke-width="3"
-                            stroke-linecap="round" class="needle" />
-                        <circle cx="50" cy="50" r="3" fill="#ffffff" stroke="#091413" stroke-width="1.5" />
-                    </svg>
-                    <div class="text-2xl font-bold text-brand-900 mt-2"><span id="perfVal">0</span> %</div>
-                    <div class="text-[10px] text-brand-500 mt-1" data-i18n="clickDetails">اضغط للتفاصيل</div>
+            <div class="custom-card p-4 space-y-3">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-bold text-brand-900 text-sm" data-i18n="salary">الراتب</span>
+                    <span class="bg-brand-100/50 px-2 py-0.5 rounded-full text-[10px] font-bold shadow-inner text-brand-900" id="salary">0 IQD</span>
                 </div>
-
-                <div class="custom-card p-4 space-y-3">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-brand-900 text-sm" data-i18n="salary">الراتب</span>
-                        <span
-                            class="bg-brand-100/50 px-2 py-0.5 rounded-full text-[10px] font-bold shadow-inner text-brand-900"
-                            id="salary">0 IQD</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-bold text-[11px] text-brand-900" data-i18n="sales">مبيعات</span>
-                        <span class="opacity-50 text-[9px] font-bold leading-none text-brand-900" id="sGoalMax">Goal:
-                            10000$</span>
-                        <div class="slider-track">
-                            <div id="salesBar" class="slider-fill" style="width: 0%">
-                                <div class="slider-label" id="salesVal">0$</div>
-                                <div class="slider-thumb"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col pt-1">
-                        <span class="font-bold text-[11px] text-brand-900" data-i18n="collection">تحصيل</span>
-                        <span class="opacity-50 text-[9px] font-bold leading-none text-brand-900" id="cGoalMax">Goal:
-                            10000$</span>
-                        <div class="slider-track">
-                            <div id="collBar" class="slider-fill" style="width: 0%">
-                                <div class="slider-label" id="collVal">0$</div>
-                                <div class="slider-thumb"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="custom-card p-4 flex items-center">
-                <div class="text-md font-bold text-brand-900 w-24 leading-tight" data-i18n="monthGoal">هدف الشهر</div>
-                <div class="flex-1 px-4">
+                <div class="flex flex-col">
+                    <span class="font-bold text-[11px] text-brand-900" data-i18n="sales">مبيعات</span>
+                    <span class="opacity-50 text-[9px] font-bold leading-none text-brand-900" id="sGoalMax">Goal: 10000$</span>
                     <div class="slider-track">
-                        <div id="mGoalBar" class="slider-fill" style="width: 0%">
-                            <div class="slider-label" id="mGoalVal">0$</div>
+                        <div id="salesBar" class="slider-fill" style="width: 0%">
+                            <div class="slider-label" id="salesVal">0$</div>
+                            <div class="slider-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col pt-1">
+                    <span class="font-bold text-[11px] text-brand-900" data-i18n="collection">تحصيل</span>
+                    <span class="opacity-50 text-[9px] font-bold leading-none text-brand-900" id="cGoalMax">Goal: 10000$</span>
+                    <div class="slider-track">
+                        <div id="collBar" class="slider-fill" style="width: 0%">
+                            <div class="slider-label" id="collVal">0$</div>
                             <div class="slider-thumb"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="relative custom-card">
-                <select id="custSelect" onchange="handleSelectChange(this)"
-                    class="w-full p-4 bg-transparent text-2xl font-bold text-brand-900 outline-none cursor-pointer text-center">
-                    <option value="" data-i18n="selectCust">اختر العميل المطلوب</option>
-                </select>
-                <div class="absolute left-10 top-1/2 -translate-y-1/2 pointer-events-none text-brand-900">▼</div>
-            </div>
-
-            <div class="custom-card p-5">
-                <h3 class="text-center text-2xl font-bold border-b-2 border-brand-100 pb-2 mb-4 text-brand-900 tracking-widest"
-                    data-i18n="todayColl">تحصيل اليوم</h3>
-                <div id="todayList" class="space-y-2 max-h-48 overflow-y-auto"></div>
-                <div class="flex justify-between items-center mt-6 pt-2 border-t-2 border-brand-100">
-                    <div class="bg-white/50 px-8 py-1 rounded-full border border-brand-100 font-bold text-2xl text-brand-900"
-                        id="dayTotal">$ 0</div>
-                    <div class="bg-white/50 px-6 py-1 rounded-full border border-brand-100 font-bold text-xl text-brand-900"
-                        data-i18n="total">المجموع</div>
-                </div>
-            </div>
-
-            <button onclick="openMyReport()"
-                class="w-full py-3 bg-brand-100 rounded-full font-bold text-brand-900 shadow-sm border border-brand-100 flex justify-center items-center gap-2">
-                📊 <span id="myReportBtnText">تقرير عملائي</span>
-            </button>
-
-            <button onclick="toggleLanguage()"
-                class="w-full py-3 bg-white/50 rounded-full font-bold text-brand-900 shadow-sm border border-white flex justify-center items-center gap-2">
-                🌐 <span id="langBtnText">کوردی</span>
-            </button>
         </div>
-    </div>
 
-    <!-- ─── Modal القبض ─── -->
-    <div id="modal"
-        class="fixed inset-0 bg-brand-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 z-50">
-        <div class="custom-card w-full max-w-sm p-6 space-y-4 max-h-[92vh] overflow-y-auto">
-            <h2 id="modalTitle" class="text-center text-2xl font-bold text-brand-900 border-b pb-2">اسم العميل</h2>
-            <div class="space-y-3">
-                <p class="text-center font-bold text-brand-700" data-i18n="amtD">المبلغ دولار $</p>
-                <input type="number" id="amtD" class="input-soft text-lg font-bold">
-
-                <p class="text-center font-bold text-brand-700" data-i18n="amtIQ">المبلغ دينار</p>
-                <input type="number" id="amtIQ" oninput="calcExchange()" class="input-soft text-lg font-bold">
-
-                <p class="text-center font-bold text-brand-700" data-i18n="rate">سعر الصرف</p>
-                <input type="number" id="rate" value="1" class="input-soft text-sm font-bold">
-
-                <p class="text-center font-bold text-brand-700" data-i18n="note">ملاحظة</p>
-                <input type="text" id="note" class="input-soft">
-
-                <!-- ─── حقل الصورة ─── -->
-                <p class="text-center font-bold text-brand-700" data-i18n="receiptPhoto">صورة الوصل</p>
-                <div id="cameraZone">
-                    <!-- الزر الرئيسي لفتح الكاميرا -->
-                    <button type="button" id="cameraBtn" onclick="openCamera()">
-                        <span id="cameraBtnIcon">📷</span>
-                        <span id="cameraBtnText">التقاط صورة</span>
-                    </button>
-
-                    <!-- input مخفي - كاميرا فقط -->
-                    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none"
-                        onchange="handleCameraCapture(this)">
-
-                    <!-- Canvas مخفي للضغط -->
-                    <canvas id="compressCanvas" style="display:none"></canvas>
-
-                    <!-- معاينة الصورة -->
-                    <img id="capturedPreview" alt="صورة الوصل">
-
-                    <!-- زر الحذف -->
-                    <button type="button" id="removeCameraBtn" onclick="removeCapture()">
-                        ✕ حذف الصورة
-                    </button>
-
-                    <!-- شريط التحميل -->
-                    <div class="upload-progress" id="uploadProgress">
-                        <div class="spinner"></div>
-                        <span id="uploadProgressText">جاري الرفع...</span>
+        <div class="custom-card p-4 flex items-center">
+            <div class="text-md font-bold text-brand-900 w-24 leading-tight" data-i18n="monthGoal">هدف الشهر</div>
+            <div class="flex-1 px-4">
+                <div class="slider-track">
+                    <div id="mGoalBar" class="slider-fill" style="width: 0%">
+                        <div class="slider-label" id="mGoalVal">0$</div>
+                        <div class="slider-thumb"></div>
                     </div>
                 </div>
-
-                <button onclick="sendData()" id="sendBtn"
-                    class="w-full py-4 bg-brand-500 text-white text-3xl font-bold rounded-full shadow-lg mt-4"
-                    data-i18n="sendBtn">ارسال</button>
-                <button onclick="closeModal()" class="w-full text-xs text-brand-700 opacity-60 mt-2 font-bold"
-                    data-i18n="cancel">إلغاء</button>
             </div>
         </div>
-    </div>
 
-    <!-- ─── Modal الأداء ─── -->
-    <div id="gaugeModal"
-        class="fixed inset-0 bg-brand-900/50 backdrop-blur-sm hidden flex items-center justify-center p-6 z-50">
-        <div class="custom-card w-full max-w-sm p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-            <h2 class="text-center text-2xl font-bold text-brand-900 border-b pb-2" data-i18n="perfDetails">تفاصيل
-                الأداء</h2>
-            <div class="space-y-3 bg-white/50 p-4 rounded-xl border border-brand-100">
-                <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
-                    <span data-i18n="attendance">معدل الحضور</span> <span id="m_attendance"
-                        class="text-brand-500">0</span>
-                </div>
-                <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
-                    <span data-i18n="visitsMonth">زيارات الشهر</span> <span id="m_visitsMonth"
-                        class="text-brand-500">0</span>
-                </div>
-                <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
-                    <span data-i18n="visitsDay">معدل زيارات اليوم</span> <span id="m_visitsDay"
-                        class="text-brand-500">0</span>
-                </div>
-                <div class="flex justify-between font-bold text-brand-700 pb-1">
-                    <span data-i18n="visitTime">معدل وقت الزيارات</span> <span id="m_visitTime"
-                        class="text-brand-500">0</span>
+        <div class="relative custom-card">
+            <select id="custSelect" onchange="handleSelectChange(this)" class="w-full p-4 bg-transparent text-2xl font-bold text-brand-900 outline-none cursor-pointer text-center">
+                <option value="" data-i18n="selectCust">اختر العميل المطلوب</option>
+            </select>
+            <div class="absolute left-10 top-1/2 -translate-y-1/2 pointer-events-none text-brand-900">▼</div>
+        </div>
+
+        <div class="custom-card p-5">
+            <h3 class="text-center text-2xl font-bold border-b-2 border-brand-100 pb-2 mb-4 text-brand-900 tracking-widest" data-i18n="todayColl">تحصيل اليوم</h3>
+            <div id="todayList" class="space-y-2 max-h-48 overflow-y-auto"></div>
+            <div class="flex justify-between items-center mt-6 pt-2 border-t-2 border-brand-100">
+                <div class="bg-white/50 px-8 py-1 rounded-full border border-brand-100 font-bold text-2xl text-brand-900" id="dayTotal">$ 0</div>
+                <div class="bg-white/50 px-6 py-1 rounded-full border border-brand-100 font-bold text-xl text-brand-900" data-i18n="total">المجموع</div>
+            </div>
+        </div>
+
+        <button onclick="openMyReport()" class="w-full py-3 bg-brand-100 rounded-full font-bold text-brand-900 shadow-sm border border-brand-100 flex justify-center items-center gap-2">
+            📊 <span id="myReportBtnText">تقرير عملائي</span>
+        </button>
+
+        <button onclick="toggleLanguage()" class="w-full py-3 bg-white/50 rounded-full font-bold text-brand-900 shadow-sm border border-white flex justify-center items-center gap-2">
+            🌐 <span id="langBtnText">کوردی</span>
+        </button>
+    </div>
+</div>
+
+<!-- ─── Modal القبض ─── -->
+<div id="modal" class="fixed inset-0 bg-brand-900/40 backdrop-blur-sm hidden flex items-center justify-center p-6 z-50">
+    <div class="custom-card w-full max-w-sm p-6 space-y-4 max-h-[92vh] overflow-y-auto">
+        <h2 id="modalTitle" class="text-center text-2xl font-bold text-brand-900 border-b pb-2">اسم العميل</h2>
+        <div class="space-y-3">
+            <p class="text-center font-bold text-brand-700" data-i18n="amtD">المبلغ دولار $</p>
+            <input type="number" id="amtD" class="input-soft text-lg font-bold">
+
+            <p class="text-center font-bold text-brand-700" data-i18n="amtIQ">المبلغ دينار</p>
+            <input type="number" id="amtIQ" oninput="calcExchange()" class="input-soft text-lg font-bold">
+
+            <p class="text-center font-bold text-brand-700" data-i18n="rate">سعر الصرف</p>
+            <input type="number" id="rate" value="0" oninput="calcExchange()" class="input-soft text-sm font-bold">
+
+            <p class="text-center font-bold text-brand-700" data-i18n="note">ملاحظة</p>
+            <input type="text" id="note" class="input-soft">
+
+            <!-- ─── حقل الصورة ─── -->
+            <p class="text-center font-bold text-brand-700" data-i18n="receiptPhoto">صورة الوصل</p>
+            <div id="cameraZone">
+                <!-- الزر الرئيسي لفتح الكاميرا -->
+                <button type="button" id="cameraBtn" onclick="openCamera()">
+                    <span id="cameraBtnIcon">📷</span>
+                    <span id="cameraBtnText">التقاط صورة</span>
+                </button>
+
+                <!-- input مخفي - كاميرا فقط -->
+                <input
+                    type="file"
+                    id="cameraInput"
+                    accept="image/*"
+                    capture="environment"
+                    style="display:none"
+                    onchange="handleCameraCapture(this)"
+                >
+
+                <!-- Canvas مخفي للضغط -->
+                <canvas id="compressCanvas" style="display:none"></canvas>
+
+                <!-- معاينة الصورة -->
+                <img id="capturedPreview" alt="صورة الوصل">
+
+                <!-- زر الحذف -->
+                <button type="button" id="removeCameraBtn" onclick="removeCapture()">
+                    ✕ حذف الصورة
+                </button>
+
+                <!-- شريط التحميل -->
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="spinner"></div>
+                    <span id="uploadProgressText">جاري الرفع...</span>
                 </div>
             </div>
-            <h3 class="text-center text-xl font-bold text-brand-900 mt-4 bg-brand-100 rounded-lg py-1"
-                data-i18n="topAgents">أفضل 3 مندوبين</h3>
-            <div id="topAgentsList"
-                class="space-y-2 bg-gradient-to-r from-brand-100/30 to-white p-4 rounded-xl border border-brand-100 shadow-sm">
-            </div>
-            <button onclick="closeGaugeModal()"
-                class="w-full py-3 bg-brand-100 text-brand-900 font-bold rounded-full shadow mt-4"
-                data-i18n="close">إغلاق</button>
+
+            <button onclick="sendData()" id="sendBtn" class="w-full py-4 bg-brand-500 text-white text-3xl font-bold rounded-full shadow-lg mt-4" data-i18n="sendBtn">ارسال</button>
+            <button onclick="closeModal()" class="w-full text-xs text-brand-700 opacity-60 mt-2 font-bold" data-i18n="cancel">إلغاء</button>
         </div>
     </div>
+</div>
 
-    <!-- ─── Modal تقرير العملاء ─── -->
-    <div id="myReportModal"
-        class="fixed inset-0 bg-brand-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="custom-card w-full max-w-sm p-5 space-y-4 max-h-[90vh] flex flex-col">
-            <div class="text-center border-b border-brand-100 pb-3">
-                <h2 class="text-xl font-bold text-brand-900" id="myReportTitle">تقرير عملائي</h2>
-                <p class="text-xs text-brand-500 mt-1" id="myReportPeriod"></p>
+<!-- ─── Modal الأداء ─── -->
+<div id="gaugeModal" class="fixed inset-0 bg-brand-900/50 backdrop-blur-sm hidden flex items-center justify-center p-6 z-50">
+    <div class="custom-card w-full max-w-sm p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+        <h2 class="text-center text-2xl font-bold text-brand-900 border-b pb-2" data-i18n="perfDetails">تفاصيل الأداء</h2>
+        <div class="space-y-3 bg-white/50 p-4 rounded-xl border border-brand-100">
+            <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
+                <span data-i18n="attendance">معدل الحضور</span> <span id="m_attendance" class="text-brand-500">0</span>
             </div>
-            <div class="flex gap-2 items-center">
-                <input type="number" id="myReportDays" value="30" min="1" max="365"
-                    class="input-soft text-center font-bold text-brand-900 text-sm" style="padding:8px; width:80px;">
-                <span class="text-brand-700 font-bold text-sm whitespace-nowrap" id="myReportDaysLabel">يوم</span>
-                <button onclick="refreshMyReport()"
-                    class="bg-brand-500 text-white px-4 py-2 rounded-full font-bold text-sm whitespace-nowrap">🔄</button>
+            <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
+                <span data-i18n="visitsMonth">زيارات الشهر</span> <span id="m_visitsMonth" class="text-brand-500">0</span>
             </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-brand-100/30 rounded-2xl p-3 text-center border border-brand-100">
-                    <div class="text-2xl font-bold text-brand-700" id="myTotalVisits">-</div>
-                    <div class="text-xs text-brand-500 mt-1" id="myTotalVisitsLabel">كل الزيارات</div>
-                </div>
-                <div class="bg-brand-100/30 rounded-2xl p-3 text-center border border-brand-100">
-                    <div class="text-2xl font-bold text-brand-700" id="myTotalClients">-</div>
-                    <div class="text-xs text-brand-500 mt-1" id="myTotalClientsLabel">عدد العملاء</div>
-                </div>
+            <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
+                <span data-i18n="visitsDay">معدل زيارات اليوم</span> <span id="m_visitsDay" class="text-brand-500">0</span>
             </div>
-            <div id="myReportBody" class="overflow-y-auto flex-1 rounded-2xl border border-brand-100 bg-white/60"
-                style="max-height:45vh;">
-                <div class="text-center py-8 text-brand-500">
-                    <div class="text-3xl mb-2">⏳</div>
-                    <div class="text-sm">جاري التحميل...</div>
-                </div>
+            <div class="flex justify-between font-bold text-brand-700 pb-1">
+                <span data-i18n="visitTime">معدل وقت الزيارات</span> <span id="m_visitTime" class="text-brand-500">0</span>
             </div>
-            <button onclick="closeMyReport()" class="w-full py-3 bg-brand-100 text-brand-900 font-bold rounded-full">
-                <span id="myReportCloseBtn">إغلاق</span>
-            </button>
         </div>
+        <h3 class="text-center text-xl font-bold text-brand-900 mt-4 bg-brand-100 rounded-lg py-1" data-i18n="topAgents">أفضل 3 مندوبين</h3>
+        <div id="topAgentsList" class="space-y-2 bg-gradient-to-r from-brand-100/30 to-white p-4 rounded-xl border border-brand-100 shadow-sm"></div>
+        <button onclick="closeGaugeModal()" class="w-full py-3 bg-brand-100 text-brand-900 font-bold rounded-full shadow mt-4" data-i18n="close">إغلاق</button>
     </div>
+</div>
 
-    <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqNMaEP6GVu_vWm6a_1NI9ETQjS0HO1WeNFtlkihPWJ_TrxNMwp2t0ju6lFDXcDh-O/exec";
-        let agent = null;
-        let notifInterval;
+<!-- ─── Modal تقرير العملاء ─── -->
+<div id="myReportModal" class="fixed inset-0 bg-brand-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+    <div class="custom-card w-full max-w-sm p-5 space-y-4 max-h-[90vh] flex flex-col">
+        <div class="text-center border-b border-brand-100 pb-3">
+            <h2 class="text-xl font-bold text-brand-900" id="myReportTitle">تقرير عملائي</h2>
+            <p class="text-xs text-brand-500 mt-1" id="myReportPeriod"></p>
+        </div>
+        <div class="flex gap-2 items-center">
+            <input type="number" id="myReportDays" value="30" min="1" max="365"
+                class="input-soft text-center font-bold text-brand-900 text-sm" style="padding:8px; width:80px;">
+            <span class="text-brand-700 font-bold text-sm whitespace-nowrap" id="myReportDaysLabel">يوم</span>
+            <button onclick="refreshMyReport()" class="bg-brand-500 text-white px-4 py-2 rounded-full font-bold text-sm whitespace-nowrap">🔄</button>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="bg-brand-100/30 rounded-2xl p-3 text-center border border-brand-100">
+                <div class="text-2xl font-bold text-brand-700" id="myTotalVisits">-</div>
+                <div class="text-xs text-brand-500 mt-1" id="myTotalVisitsLabel">كل الزيارات</div>
+            </div>
+            <div class="bg-brand-100/30 rounded-2xl p-3 text-center border border-brand-100">
+                <div class="text-2xl font-bold text-brand-700" id="myTotalClients">-</div>
+                <div class="text-xs text-brand-500 mt-1" id="myTotalClientsLabel">عدد العملاء</div>
+            </div>
+        </div>
+        <div id="myReportBody" class="overflow-y-auto flex-1 rounded-2xl border border-brand-100 bg-white/60" style="max-height:45vh;">
+            <div class="text-center py-8 text-brand-500">
+                <div class="text-3xl mb-2">⏳</div>
+                <div class="text-sm">جاري التحميل...</div>
+            </div>
+        </div>
+        <button onclick="closeMyReport()" class="w-full py-3 bg-brand-100 text-brand-900 font-bold rounded-full">
+            <span id="myReportCloseBtn">إغلاق</span>
+        </button>
+    </div>
+</div>
 
-        // ─── متغيرات الكاميرا ───
-        let capturedImageBase64 = null;
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqNMaEP6GVu_vWm6a_1NI9ETQjS0HO1WeNFtlkihPWJ_TrxNMwp2t0ju6lFDXcDh-O/exec";
+let agent = null;
+let notifInterval;
 
-        const i18n = {
-            ar: {
-                loading: "جاري التحديث...", agent: "المندوب", password: "الرقم السري",
-                loginBtn: "دخول", salary: "الراتب", sales: "مبيعات", collection: "تحصيل",
-                monthGoal: "هدف الشهر", selectCust: "اختر العميل المطلوب", todayColl: "تحصيل اليوم",
-                total: "المجموع", amtD: "المبلغ دولار $", amtIQ: "المبلغ دينار", rate: "سعر الصرف",
-                note: "ملاحظة", sendBtn: "ارسال", cancel: "إلغاء", clickDetails: "اضغط للتفاصيل",
-                perfDetails: "تفاصيل الأداء", attendance: "معدل الحضور", visitsMonth: "زيارات الشهر",
-                visitsDay: "معدل زيارات اليوم", visitTime: "معدل وقت الزيارات",
-                topAgents: "أفضل 3 مندوبين", close: "إغلاق", langName: "کوردی",
-                receiptPhoto: "صورة الوصل",
-                cameraCapture: "التقاط صورة",
-                cameraCaptured: "✅ تم الالتقاط - اضغط للتغيير",
-                uploadingPhoto: "جاري رفع الصورة...",
-            },
-            ku: {
-                loading: "نوێ دەکرێتەوە...", agent: "نوێنەر", password: "تێپەڕەوشە",
-                loginBtn: "چوونەژوورەوە", salary: "مووچە", sales: "فرۆشتن", collection: "کۆکردنەوە",
-                monthGoal: "ئامانجی مانگ", selectCust: "کڕیار هەڵبژێرە", todayColl: "کۆکراوەی ئەمڕۆ",
-                total: "کۆی گشتی", amtD: "بڕ بە دۆلار $", amtIQ: "بڕ بە دینار", rate: "نرخی ئاڵوگۆڕ",
-                note: "تێبینی", sendBtn: "ناردن", cancel: "پاشگەزبوونەوە", clickDetails: "بۆ وردەکاری کرتە بکە",
-                perfDetails: "وردەکارییەکانی ئاست", attendance: "ڕێژەی ئامادەبوون",
-                visitsMonth: "سەردانی مانگ", visitsDay: "تێکڕای سەردانی ڕۆژانە",
-                visitTime: "تێکڕای کاتی سەردان", topAgents: "باشترین 3 نوێنەر",
-                close: "داخستن", langName: "العربية",
-                receiptPhoto: "وێنەی پسووڵە",
-                cameraCapture: "وێنە بگرە",
-                cameraCaptured: "✅ وێنە گیرا - بۆ گۆڕین کرتە بکە",
-                uploadingPhoto: "وێنە بارکردن...",
-            }
-        };
+// ─── متغيرات الكاميرا ───
+let capturedImageBase64 = null;
 
-        const myReportI18n = {
-            ar: {
-                title: "تقرير عملائي", days: "يوم", totalVisits: "كل الزيارات",
-                totalClients: "عدد العملاء", close: "إغلاق", noData: "لا توجد بيانات",
-                btn: "تقرير عملائي", notVisited: "لم تتم الزيارة"
-            },
-            ku: {
-                title: "ڕاپۆرتی کڕیارەکانم", days: "ڕۆژ", totalVisits: "کۆی سەردانەکان",
-                totalClients: "ژمارەی کڕیارەکان", close: "داخستن", noData: "هیچ داتایەک نییە",
-                btn: "ڕاپۆرتی کڕیارەکانم", notVisited: "سەردان نەکراو"
-            }
-        };
+const i18n = {
+    ar: {
+        loading: "جاري التحديث...", agent: "المندوب", password: "الرقم السري",
+        loginBtn: "دخول", salary: "الراتب", sales: "مبيعات", collection: "تحصيل",
+        monthGoal: "هدف الشهر", selectCust: "اختر العميل المطلوب", todayColl: "تحصيل اليوم",
+        total: "المجموع", amtD: "المبلغ دولار $", amtIQ: "المبلغ دينار", rate: "سعر الصرف",
+        note: "ملاحظة", sendBtn: "ارسال", cancel: "إلغاء", clickDetails: "اضغط للتفاصيل",
+        perfDetails: "تفاصيل الأداء", attendance: "معدل الحضور", visitsMonth: "زيارات الشهر",
+        visitsDay: "معدل زيارات اليوم", visitTime: "معدل وقت الزيارات",
+        topAgents: "أفضل 3 مندوبين", close: "إغلاق", langName: "کوردی",
+        receiptPhoto: "صورة الوصل",
+        cameraCapture: "التقاط صورة",
+        cameraCaptured: "✅ تم الالتقاط - اضغط للتغيير",
+        uploadingPhoto: "جاري رفع الصورة...",
+    },
+    ku: {
+        loading: "نوێ دەکرێتەوە...", agent: "نوێنەر", password: "تێپەڕەوشە",
+        loginBtn: "چوونەژوورەوە", salary: "مووچە", sales: "فرۆشتن", collection: "کۆکردنەوە",
+        monthGoal: "ئامانجی مانگ", selectCust: "کڕیار هەڵبژێرە", todayColl: "کۆکراوەی ئەمڕۆ",
+        total: "کۆی گشتی", amtD: "بڕ بە دۆلار $", amtIQ: "بڕ بە دینار", rate: "نرخی ئاڵوگۆڕ",
+        note: "تێبینی", sendBtn: "ناردن", cancel: "پاشگەزبوونەوە", clickDetails: "بۆ وردەکاری کرتە بکە",
+        perfDetails: "وردەکارییەکانی ئاست", attendance: "ڕێژەی ئامادەبوون",
+        visitsMonth: "سەردانی مانگ", visitsDay: "تێکڕای سەردانی ڕۆژانە",
+        visitTime: "تێکڕای کاتی سەردان", topAgents: "باشترین 3 نوێنەر",
+        close: "داخستن", langName: "العربية",
+        receiptPhoto: "وێنەی پسووڵە",
+        cameraCapture: "وێنە بگرە",
+        cameraCaptured: "✅ وێنە گیرا - بۆ گۆڕین کرتە بکە",
+        uploadingPhoto: "وێنە بارکردن...",
+    }
+};
 
-        let currentLang = localStorage.getItem('mawar_lang') || 'ar';
+const myReportI18n = {
+    ar: {
+        title: "تقرير عملائي", days: "يوم", totalVisits: "كل الزيارات",
+        totalClients: "عدد العملاء", close: "إغلاق", noData: "لا توجد بيانات",
+        btn: "تقرير عملائي", notVisited: "لم تتم الزيارة"
+    },
+    ku: {
+        title: "ڕاپۆرتی کڕیارەکانم", days: "ڕۆژ", totalVisits: "کۆی سەردانەکان",
+        totalClients: "ژمارەی کڕیارەکان", close: "داخستن", noData: "هیچ داتایەک نییە",
+        btn: "ڕاپۆرتی کڕیارەکانم", notVisited: "سەردان نەکراو"
+    }
+};
 
-        function applyLanguage() {
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = 'rtl';
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18n[currentLang] && i18n[currentLang][key]) el.innerText = i18n[currentLang][key];
-            });
-            document.getElementById('langBtnText').innerText = i18n[currentLang].langName;
-            document.getElementById('myReportBtnText').innerText = myReportI18n[currentLang].btn;
-            // تحديث نص زر الكاميرا حسب الحالة
-            if (!capturedImageBase64) {
-                document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCapture;
-            }
+let currentLang = localStorage.getItem('mawar_lang') || 'ar';
+
+function applyLanguage() {
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = 'rtl';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[currentLang] && i18n[currentLang][key]) el.innerText = i18n[currentLang][key];
+    });
+    document.getElementById('langBtnText').innerText = i18n[currentLang].langName;
+    document.getElementById('myReportBtnText').innerText = myReportI18n[currentLang].btn;
+    // تحديث نص زر الكاميرا حسب الحالة
+    if (!capturedImageBase64) {
+        document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCapture;
+    }
+}
+
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'ku' : 'ar';
+    localStorage.setItem('mawar_lang', currentLang);
+    applyLanguage();
+}
+
+window.onload = () => {
+    applyLanguage();
+    const saved = localStorage.getItem('mawar_session');
+    if (saved) {
+        const d = JSON.parse(saved);
+        performLogin(d.u, d.p, true);
+    } else {
+        setTimeout(() => {
+            document.getElementById('splashScreen').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+        }, 1000);
+    }
+};
+
+async function performLogin(u, p, isAuto) {
+    try {
+        const r = await fetch(`${SCRIPT_URL}?action=login&user=${u}&pass=${p}`);
+        const res = await r.json();
+        if (res.success) {
+            agent = res.data;
+            localStorage.setItem('mawar_session', JSON.stringify({u, p}));
+            document.getElementById('splashScreen').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            updateUI();
+            loadCustomers();
+            checkNotification();
+            if (notifInterval) clearInterval(notifInterval);
+            notifInterval = setInterval(checkNotification, 2 * 60 * 60 * 1000);
+        } else {
+            document.getElementById('splashScreen').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
         }
+    } catch(e) {
+        document.getElementById('splashScreen').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'block';
+    }
+}
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'ku' : 'ar';
-            localStorage.setItem('mawar_lang', currentLang);
-            applyLanguage();
-        }
+function updateUI() {
+    const needle = document.getElementById('needle');
+    const perfDisplay = document.getElementById('perfVal');
+    const targetPerf = Math.round(agent.perf * 100);
 
-        window.onload = () => {
-            applyLanguage();
-            const saved = localStorage.getItem('mawar_session');
-            if (saved) {
-                const d = JSON.parse(saved);
-                performLogin(d.u, d.p, true);
-            } else {
-                setTimeout(() => {
-                    document.getElementById('splashScreen').style.display = 'none';
-                    document.getElementById('loginPage').style.display = 'block';
-                }, 1000);
-            }
-        };
+    needle.style.transition = "none";
+    needle.style.transform = "rotate(0deg)";
+    perfDisplay.innerText = "0";
 
-        async function performLogin(u, p, isAuto) {
-            try {
-                const r = await fetch(`${SCRIPT_URL}?action=login&user=${u}&pass=${p}`);
-                const res = await r.json();
-                if (res.success) {
-                    agent = res.data;
-                    localStorage.setItem('mawar_session', JSON.stringify({ u, p }));
-                    document.getElementById('splashScreen').style.display = 'none';
-                    document.getElementById('loginPage').style.display = 'none';
-                    document.getElementById('dashboard').style.display = 'block';
-                    updateUI();
-                    loadCustomers();
-                    checkNotification();
-                    if (notifInterval) clearInterval(notifInterval);
-                    notifInterval = setInterval(checkNotification, 2 * 60 * 60 * 1000);
-                } else {
-                    document.getElementById('splashScreen').style.display = 'none';
-                    document.getElementById('loginPage').style.display = 'block';
-                }
-            } catch (e) {
-                document.getElementById('splashScreen').style.display = 'none';
-                document.getElementById('loginPage').style.display = 'block';
-            }
-        }
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            needle.style.transition = "transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)";
+            needle.style.transform = "rotate(180deg)";
+            let tempVal = 0;
+            let upInterval = setInterval(() => {
+                if (tempVal >= 100) { clearInterval(upInterval); }
+                else { tempVal += 2; perfDisplay.innerText = tempVal; }
+            }, 10);
+            setTimeout(() => {
+                needle.style.transform = `rotate(${targetPerf * 1.8}deg)`;
+                perfDisplay.innerText = targetPerf;
+            }, 1500);
+        }, 100);
+    });
 
-        function updateUI() {
-            const needle = document.getElementById('needle');
-            const perfDisplay = document.getElementById('perfVal');
-            const targetPerf = Math.round(agent.perf * 100);
+    document.getElementById('salary').innerText = agent.salary.toLocaleString() + " DQ";
+    setSlider('salesBar', 'salesVal', agent.sales, agent.sGoal || 10000);
+    setSlider('collBar', 'collVal', agent.coll, agent.cGoal || 10000);
+    setSlider('mGoalBar', 'mGoalVal', agent.mGoal, agent.tGoal || 10000);
+    document.getElementById('sGoalMax').innerText = "Goal: " + (agent.sGoal || 10000) + "$";
+    document.getElementById('cGoalMax').innerText = "Goal: " + (agent.cGoal || 10000) + "$";
+    loadToday();
+}
 
-            needle.style.transition = "none";
-            needle.style.transform = "rotate(0deg)";
-            perfDisplay.innerText = "0";
+function setSlider(barId, valId, val, max) {
+    const pct = Math.min((val / max) * 100, 100);
+    document.getElementById(barId).style.width = pct + "%";
+    document.getElementById(valId).innerText = val + "$";
+}
 
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    needle.style.transition = "transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)";
-                    needle.style.transform = "rotate(180deg)";
-                    let tempVal = 0;
-                    let upInterval = setInterval(() => {
-                        if (tempVal >= 100) { clearInterval(upInterval); }
-                        else { tempVal += 2; perfDisplay.innerText = tempVal; }
-                    }, 10);
-                    setTimeout(() => {
-                        needle.style.transform = `rotate(${targetPerf * 1.8}deg)`;
-                        perfDisplay.innerText = targetPerf;
-                    }, 1500);
-                }, 100);
-            });
+async function loadCustomers() {
+    const r = await fetch(`${SCRIPT_URL}?action=getCustomers&agent=${agent.name}`);
+    const data = await r.json();
+    const sel = document.getElementById('custSelect');
+    sel.innerHTML = `<option value="">${i18n[currentLang].selectCust}</option>`;
+    data.forEach(c => {
+        let opt = document.createElement('option');
+        opt.value = c; opt.textContent = c;
+        sel.appendChild(opt);
+    });
+}
 
-            document.getElementById('salary').innerText = agent.salary.toLocaleString() + " DQ";
-            setSlider('salesBar', 'salesVal', agent.sales, agent.sGoal || 10000);
-            setSlider('collBar', 'collVal', agent.coll, agent.cGoal || 10000);
-            setSlider('mGoalBar', 'mGoalVal', agent.mGoal, agent.tGoal || 10000);
-            document.getElementById('sGoalMax').innerText = "Goal: " + (agent.sGoal || 10000) + "$";
-            document.getElementById('cGoalMax').innerText = "Goal: " + (agent.cGoal || 10000) + "$";
-            loadToday();
-        }
+function handleSelectChange(select) {
+    if (select.value) {
+        document.getElementById('modalTitle').innerText = select.value;
+        resetCameraUI();
+        document.getElementById('modal').classList.remove('hidden');
+    }
+}
 
-        function setSlider(barId, valId, val, max) {
-            const pct = Math.min((val / max) * 100, 100);
-            document.getElementById(barId).style.width = pct + "%";
-            document.getElementById(valId).innerText = val + "$";
-        }
+function closeModal() {
+    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('custSelect').value = "";
+    resetCameraUI();
+}
 
-        async function loadCustomers() {
-            const r = await fetch(`${SCRIPT_URL}?action=getCustomers&agent=${agent.name}`);
-            const data = await r.json();
-            const sel = document.getElementById('custSelect');
-            sel.innerHTML = `<option value="">${i18n[currentLang].selectCust}</option>`;
-            data.forEach(c => {
-                let opt = document.createElement('option');
-                opt.value = c; opt.textContent = c;
-                sel.appendChild(opt);
-            });
-        }
+function calcExchange() {
+    const iq = document.getElementById('amtIQ').value;
+    const rate = document.getElementById('rate').value || 0;
+    if (iq) document.getElementById('amtD').value = (iq / rate).toFixed(2);
+}
 
-        function handleSelectChange(select) {
-            if (select.value) {
-                document.getElementById('modalTitle').innerText = select.value;
-                resetCameraUI();
-                document.getElementById('modal').classList.remove('hidden');
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-            document.getElementById('custSelect').value = "";
-            resetCameraUI();
-        }
-
-        function calcExchange() {
-            const iq = document.getElementById('amtIQ').value;
-            const rate = document.getElementById('rate').value || 0;
-            if (iq) document.getElementById('amtD').value = (iq / rate).toFixed(2);
-        }
-
-        async function loadToday() {
-            const r = await fetch(`${SCRIPT_URL}?action=getToday&agent=${agent.name}`);
-            const data = await r.json();
-            const list = document.getElementById('todayList');
-            let total = 0; list.innerHTML = "";
-            data.forEach(i => {
-                total += parseFloat(i.amt);
-                list.innerHTML += `
+async function loadToday() {
+    const r = await fetch(`${SCRIPT_URL}?action=getToday&agent=${agent.name}`);
+    const data = await r.json();
+    const list = document.getElementById('todayList');
+    let total = 0; list.innerHTML = "";
+    data.forEach(i => {
+        total += parseFloat(i.amt);
+        list.innerHTML += `
             <div class="flex justify-between items-center bg-white/60 p-2 rounded-2xl border border-brand-900/10 mb-2 shadow-sm">
                 <div class="w-24 text-center font-bold border-r-2 border-brand-100 text-lg">$ ${i.amt}</div>
                 <div class="flex-1 text-center font-bold text-brand-900 text-sm">${i.cust}</div>
             </div>`;
-            });
-            document.getElementById('dayTotal').innerText = "$ " + total;
-        }
+    });
+    document.getElementById('dayTotal').innerText = "$ " + total;
+}
 
-        async function login() {
-            performLogin(document.getElementById('user').value, document.getElementById('pass').value, false);
-        }
+async function login() {
+    performLogin(document.getElementById('user').value, document.getElementById('pass').value, false);
+}
 
-        // ─── دوال الكاميرا ───────────────────────────────────────────
+// ─── دوال الكاميرا ───────────────────────────────────────────
 
-        function openCamera() {
-            document.getElementById('cameraInput').click();
-        }
+function openCamera() {
+    document.getElementById('cameraInput').click();
+}
 
-        function handleCameraCapture(input) {
-            if (!input.files || !input.files[0]) return;
-            const file = input.files[0];
+function handleCameraCapture(input) {
+    if (!input.files || !input.files[0]) return;
+    const file = input.files[0];
 
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = new Image();
-                img.onload = function () {
-                    // ─── ضغط الصورة: max 900px عرض، جودة 0.65 ───
-                    const canvas = document.getElementById('compressCanvas');
-                    const MAX_W = 900, MAX_H = 1200;
-                    let w = img.width, h = img.height;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            // ─── ضغط الصورة: max 900px عرض، جودة 0.65 ───
+            const canvas = document.getElementById('compressCanvas');
+            const MAX_W = 900, MAX_H = 1200;
+            let w = img.width, h = img.height;
 
-                    if (w > MAX_W) { h = Math.round(h * MAX_W / w); w = MAX_W; }
-                    if (h > MAX_H) { w = Math.round(w * MAX_H / h); h = MAX_H; }
+            if (w > MAX_W) { h = Math.round(h * MAX_W / w); w = MAX_W; }
+            if (h > MAX_H) { w = Math.round(w * MAX_H / h); h = MAX_H; }
 
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
 
-                    capturedImageBase64 = canvas.toDataURL('image/jpeg', 0.65);
+            capturedImageBase64 = canvas.toDataURL('image/jpeg', 0.65);
 
-                    // ─── عرض المعاينة ───
-                    const preview = document.getElementById('capturedPreview');
-                    preview.src = capturedImageBase64;
-                    preview.style.display = 'block';
-
-                    // ─── تحديث الزر ───
-                    document.getElementById('cameraBtnIcon').innerText = '🔄';
-                    document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCaptured;
-
-                    // ─── إظهار زر الحذف وتحديث تصميم الحاوية ───
-                    document.getElementById('removeCameraBtn').style.display = 'block';
-                    document.getElementById('cameraZone').classList.add('has-image');
-
-                    // إعادة تعيين input لتتيح التقاط نفس الصورة مرة أخرى
-                    input.value = '';
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function removeCapture() {
-            capturedImageBase64 = null;
+            // ─── عرض المعاينة ───
             const preview = document.getElementById('capturedPreview');
-            preview.src = '';
-            preview.style.display = 'none';
-            document.getElementById('cameraBtnIcon').innerText = '📷';
-            document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCapture;
-            document.getElementById('removeCameraBtn').style.display = 'none';
-            document.getElementById('cameraZone').classList.remove('has-image');
-            document.getElementById('cameraInput').value = '';
-        }
+            preview.src = capturedImageBase64;
+            preview.style.display = 'block';
 
-        function resetCameraUI() {
-            capturedImageBase64 = null;
-            const preview = document.getElementById('capturedPreview');
-            preview.src = '';
-            preview.style.display = 'none';
-            document.getElementById('cameraBtnIcon').innerText = '📷';
-            document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCapture;
-            document.getElementById('removeCameraBtn').style.display = 'none';
-            document.getElementById('cameraZone').classList.remove('has-image');
-            document.getElementById('uploadProgress').style.display = 'none';
-            document.getElementById('cameraInput').value = '';
-        }
+            // ─── تحديث الزر ───
+            document.getElementById('cameraBtnIcon').innerText = '🔄';
+            document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCaptured;
 
-        // ─── إرسال البيانات ───────────────────────────────────────────
+            // ─── إظهار زر الحذف وتحديث تصميم الحاوية ───
+            document.getElementById('removeCameraBtn').style.display = 'block';
+            document.getElementById('cameraZone').classList.add('has-image');
 
-        async function sendData() {
-            const btn = document.getElementById('sendBtn');
-            btn.disabled = true;
-            btn.innerText = "...";
+            // إعادة تعيين input لتتيح التقاط نفس الصورة مرة أخرى
+            input.value = '';
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
 
-            // إظهار شريط التقدم إن كانت هناك صورة
-            if (capturedImageBase64) {
-                const prog = document.getElementById('uploadProgress');
-                prog.style.display = 'flex';
-                document.getElementById('uploadProgressText').innerText = i18n[currentLang].uploadingPhoto;
-            }
+function removeCapture() {
+    capturedImageBase64 = null;
+    const preview = document.getElementById('capturedPreview');
+    preview.src = '';
+    preview.style.display = 'none';
+    document.getElementById('cameraBtnIcon').innerText = '📷';
+    document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCapture;
+    document.getElementById('removeCameraBtn').style.display = 'none';
+    document.getElementById('cameraZone').classList.remove('has-image');
+    document.getElementById('cameraInput').value = '';
+}
 
-            const fullCustomerText = document.getElementById('modalTitle').innerText;
-            const cleanCustomerName = fullCustomerText.split('-')[0].trim();
+function resetCameraUI() {
+    capturedImageBase64 = null;
+    const preview = document.getElementById('capturedPreview');
+    preview.src = '';
+    preview.style.display = 'none';
+    document.getElementById('cameraBtnIcon').innerText = '📷';
+    document.getElementById('cameraBtnText').innerText = i18n[currentLang].cameraCapture;
+    document.getElementById('removeCameraBtn').style.display = 'none';
+    document.getElementById('cameraZone').classList.remove('has-image');
+    document.getElementById('uploadProgress').style.display = 'none';
+    document.getElementById('cameraInput').value = '';
+}
 
-            const payload = {
-                agent: agent.name,
-                customer: cleanCustomerName,
-                amount: document.getElementById('amtD').value,
-                amountIQD: document.getElementById('amtIQ').value,
-                rate: document.getElementById('rate').value,
-                note: document.getElementById('note').value,
-                imageBase64: capturedImageBase64 || ''
-            };
+// ─── إرسال البيانات ───────────────────────────────────────────
 
-            try {
-                await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
-                alert(currentLang === 'ar' ? "تم الإرسال" : "نێردرا");
-                closeModal();
-                loadToday();
-                document.getElementById('amtD').value = '';
-                document.getElementById('amtIQ').value = '';
-                document.getElementById('note').value = '';
-            } catch (e) {
-                alert("Error");
-            }
+async function sendData() {
+    const btn = document.getElementById('sendBtn');
+    btn.disabled = true;
+    btn.innerText = "...";
 
-            document.getElementById('uploadProgress').style.display = 'none';
-            btn.disabled = false;
-            btn.innerText = i18n[currentLang].sendBtn;
-        }
+    // إظهار شريط التقدم إن كانت هناك صورة
+    if (capturedImageBase64) {
+        const prog = document.getElementById('uploadProgress');
+        prog.style.display = 'flex';
+        document.getElementById('uploadProgressText').innerText = i18n[currentLang].uploadingPhoto;
+    }
 
-        // ─── Modal الأداء ───────────────────────────────────────────
+    const fullCustomerText = document.getElementById('modalTitle').innerText;
+    const cleanCustomerName = fullCustomerText.split('-')[0].trim();
 
-        function showGaugeModal() {
-            if (!agent) return;
-            document.getElementById('m_attendance').innerText = agent.attendance || "0";
-            document.getElementById('m_visitsMonth').innerText = agent.visitsMonth || "0";
-            document.getElementById('m_visitsDay').innerText = agent.visitsDay || "0";
-            document.getElementById('m_visitTime').innerText = agent.visitTime || "0";
-            const list = document.getElementById('topAgentsList');
-            list.innerHTML = "";
-            if (agent.topAgents && agent.topAgents.length > 0) {
-                agent.topAgents.forEach((a, index) => {
-                    let medal = index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉";
-                    let percent = Math.round((parseFloat(a.rating) || 0) * 100);
-                    list.innerHTML += `
+    const payload = {
+        agent: agent.name,
+        customer: cleanCustomerName,
+        amount: document.getElementById('amtD').value,
+        amountIQD: document.getElementById('amtIQ').value,
+        rate: document.getElementById('rate').value,
+        note: document.getElementById('note').value,
+        imageBase64: capturedImageBase64 || ''
+    };
+
+    try {
+        await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+        alert(currentLang === 'ar' ? "تم الإرسال" : "نێردرا");
+        closeModal();
+        loadToday();
+        document.getElementById('amtD').value = '';
+        document.getElementById('amtIQ').value = '';
+        document.getElementById('note').value = '';
+    } catch(e) {
+        alert("Error");
+    }
+
+    document.getElementById('uploadProgress').style.display = 'none';
+    btn.disabled = false;
+    btn.innerText = i18n[currentLang].sendBtn;
+}
+
+// ─── Modal الأداء ───────────────────────────────────────────
+
+function showGaugeModal() {
+    if (!agent) return;
+    document.getElementById('m_attendance').innerText = agent.attendance || "0";
+    document.getElementById('m_visitsMonth').innerText = agent.visitsMonth || "0";
+    document.getElementById('m_visitsDay').innerText = agent.visitsDay || "0";
+    document.getElementById('m_visitTime').innerText = agent.visitTime || "0";
+    const list = document.getElementById('topAgentsList');
+    list.innerHTML = "";
+    if (agent.topAgents && agent.topAgents.length > 0) {
+        agent.topAgents.forEach((a, index) => {
+            let medal = index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉";
+            let percent = Math.round((parseFloat(a.rating) || 0) * 100);
+            list.innerHTML += `
                 <div class="flex justify-between items-center border-b border-brand-100 last:border-0 py-1">
                     <span class="font-bold text-brand-900">${medal} ${a.name}</span>
                     <span class="bg-brand-100 text-brand-900 px-2 rounded font-bold text-sm">${percent}%</span>
                 </div>`;
-                });
-            } else {
-                list.innerHTML = `<div class="text-center text-sm text-gray-500">لا توجد بيانات</div>`;
-            }
-            document.getElementById('gaugeModal').classList.remove('hidden');
-        }
+        });
+    } else {
+        list.innerHTML = `<div class="text-center text-sm text-gray-500">لا توجد بيانات</div>`;
+    }
+    document.getElementById('gaugeModal').classList.remove('hidden');
+}
 
-        function closeGaugeModal() {
-            document.getElementById('gaugeModal').classList.remove('hidden');
-            document.getElementById('gaugeModal').classList.add('hidden');
-        }
+function closeGaugeModal() {
+    document.getElementById('gaugeModal').classList.remove('hidden');
+    document.getElementById('gaugeModal').classList.add('hidden');
+}
 
-        // ─── الإشعارات ───────────────────────────────────────────────
+// ─── الإشعارات ───────────────────────────────────────────────
 
-        async function checkNotification() {
-            try {
-                const r = await fetch(`${SCRIPT_URL}?action=getNotification`);
-                const res = await r.json();
-                if (res.msg && res.msg.toString().trim() !== "") {
-                    document.getElementById('notifMessage').innerText = res.msg;
-                    const toast = document.getElementById('notificationToast');
-                    toast.classList.remove('toast-enter');
-                    toast.classList.add('toast-active');
-                    setTimeout(closeNotification, 10000);
-                }
-            } catch (e) { console.error("Notification Error", e); }
-        }
-
-        function closeNotification() {
+async function checkNotification() {
+    try {
+        const r = await fetch(`${SCRIPT_URL}?action=getNotification`);
+        const res = await r.json();
+        if (res.msg && res.msg.toString().trim() !== "") {
+            document.getElementById('notifMessage').innerText = res.msg;
             const toast = document.getElementById('notificationToast');
-            toast.classList.remove('toast-active');
-            toast.classList.add('toast-enter');
+            toast.classList.remove('toast-enter');
+            toast.classList.add('toast-active');
+            setTimeout(closeNotification, 10000);
         }
+    } catch(e) { console.error("Notification Error", e); }
+}
 
-        // ─── تقرير عملاء المندوب ────────────────────────────────────
+function closeNotification() {
+    const toast = document.getElementById('notificationToast');
+    toast.classList.remove('toast-active');
+    toast.classList.add('toast-enter');
+}
 
-        function getMyReportDates() {
-            const days = parseInt(document.getElementById('myReportDays').value) || 30;
-            const end = new Date();
-            const start = new Date();
-            start.setDate(start.getDate() - (days - 1));
-            return {
-                start: start.toISOString().split('T')[0],
-                end: end.toISOString().split('T')[0]
-            };
-        }
+// ─── تقرير عملاء المندوب ────────────────────────────────────
 
-        function formatMyDate(dateStr) {
-            return new Date(dateStr).toLocaleDateString('ar', { day: 'numeric', month: 'short' });
-        }
+function getMyReportDates() {
+    const days = parseInt(document.getElementById('myReportDays').value) || 30;
+    const end = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - (days - 1));
+    return {
+        start: start.toISOString().split('T')[0],
+        end: end.toISOString().split('T')[0]
+    };
+}
 
-        function applyMyReportLang() {
-            const t = myReportI18n[currentLang];
-            document.getElementById('myReportTitle').innerText = t.title;
-            document.getElementById('myReportDaysLabel').innerText = t.days;
-            document.getElementById('myTotalVisitsLabel').innerText = t.totalVisits;
-            document.getElementById('myTotalClientsLabel').innerText = t.totalClients;
-            document.getElementById('myReportCloseBtn').innerText = t.close;
-        }
+function formatMyDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('ar', { day: 'numeric', month: 'short' });
+}
 
-        function openMyReport() {
-            if (!agent) return;
-            applyMyReportLang();
-            const { start, end } = getMyReportDates();
-            document.getElementById('myReportPeriod').innerText = `${formatMyDate(start)}  →  ${formatMyDate(end)}`;
-            document.getElementById('myReportModal').classList.remove('hidden');
-            fetchMyReport(start, end);
-        }
+function applyMyReportLang() {
+    const t = myReportI18n[currentLang];
+    document.getElementById('myReportTitle').innerText = t.title;
+    document.getElementById('myReportDaysLabel').innerText = t.days;
+    document.getElementById('myTotalVisitsLabel').innerText = t.totalVisits;
+    document.getElementById('myTotalClientsLabel').innerText = t.totalClients;
+    document.getElementById('myReportCloseBtn').innerText = t.close;
+}
 
-        function refreshMyReport() {
-            const { start, end } = getMyReportDates();
-            document.getElementById('myReportPeriod').innerText = `${formatMyDate(start)}  →  ${formatMyDate(end)}`;
-            document.getElementById('myReportBody').innerHTML =
-                `<div class="text-center py-8 text-brand-500"><div class="text-3xl mb-2">⏳</div></div>`;
-            fetchMyReport(start, end);
-        }
+function openMyReport() {
+    if (!agent) return;
+    applyMyReportLang();
+    const { start, end } = getMyReportDates();
+    document.getElementById('myReportPeriod').innerText = `${formatMyDate(start)}  →  ${formatMyDate(end)}`;
+    document.getElementById('myReportModal').classList.remove('hidden');
+    fetchMyReport(start, end);
+}
 
-        function fetchMyReport(start, end) {
-            const t = myReportI18n[currentLang];
-            document.getElementById('myTotalVisits').innerText = '-';
-            document.getElementById('myTotalClients').innerText = '-';
+function refreshMyReport() {
+    const { start, end } = getMyReportDates();
+    document.getElementById('myReportPeriod').innerText = `${formatMyDate(start)}  →  ${formatMyDate(end)}`;
+    document.getElementById('myReportBody').innerHTML =
+        `<div class="text-center py-8 text-brand-500"><div class="text-3xl mb-2">⏳</div></div>`;
+    fetchMyReport(start, end);
+}
 
-            fetch(`${SCRIPT_URL}?action=getAgentReport&agent=${encodeURIComponent(agent.name)}&startDate=${start}&endDate=${end}`)
-                .then(r => r.json())
-                .then(data => {
-                    const totalVisits = data.reduce((s, x) => s + x.visits, 0);
-                    document.getElementById('myTotalVisits').innerText = totalVisits;
-                    document.getElementById('myTotalClients').innerText = data.length;
-                    if (data.length === 0) {
-                        document.getElementById('myReportBody').innerHTML =
-                            `<div class="text-center py-8 text-brand-500 text-sm">${t.noData}</div>`;
-                        return;
-                    }
-                    let html = '';
-                    data.forEach((item, idx) => {
-                        const isVisited = item.visits > 0;
-                        html += `
+function fetchMyReport(start, end) {
+    const t = myReportI18n[currentLang];
+    document.getElementById('myTotalVisits').innerText = '-';
+    document.getElementById('myTotalClients').innerText = '-';
+
+    fetch(`${SCRIPT_URL}?action=getAgentReport&agent=${encodeURIComponent(agent.name)}&startDate=${start}&endDate=${end}`)
+        .then(r => r.json())
+        .then(data => {
+            const totalVisits = data.reduce((s, x) => s + x.visits, 0);
+            document.getElementById('myTotalVisits').innerText = totalVisits;
+            document.getElementById('myTotalClients').innerText = data.length;
+            if (data.length === 0) {
+                document.getElementById('myReportBody').innerHTML =
+                    `<div class="text-center py-8 text-brand-500 text-sm">${t.noData}</div>`;
+                return;
+            }
+            let html = '';
+            data.forEach((item, idx) => {
+                const isVisited = item.visits > 0;
+                html += `
                     <div class="client-row-agent">
                         <div class="font-bold text-brand-900 text-sm flex-1">${idx + 1}. ${item.client}</div>
                         <div class="visits-badge ${isVisited ? 'done' : 'zero'}">
                             ${isVisited ? item.visits : t.notVisited}
                         </div>
                     </div>`;
-                    });
-                    document.getElementById('myReportBody').innerHTML = html;
-                })
-                .catch(() => {
-                    document.getElementById('myReportBody').innerHTML =
-                        `<div class="text-center py-8 text-red-400 text-sm">⚠️ خطأ في التحميل</div>`;
-                });
-        }
+            });
+            document.getElementById('myReportBody').innerHTML = html;
+        })
+        .catch(() => {
+            document.getElementById('myReportBody').innerHTML =
+                `<div class="text-center py-8 text-red-400 text-sm">⚠️ خطأ في التحميل</div>`;
+        });
+}
 
-        function closeMyReport() {
-            document.getElementById('myReportModal').classList.add('hidden');
-        }
-    </script>
+function closeMyReport() {
+    document.getElementById('myReportModal').classList.add('hidden');
+}
+</script>
 </body>
-
 </html>
