@@ -350,9 +350,18 @@
             <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
                 <span data-i18n="visitsDay">معدل زيارات اليوم</span> <span id="m_visitsDay" class="text-brand-500">0</span>
             </div>
-            <div class="flex justify-between font-bold text-brand-700 pb-1">
+            <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
                 <span data-i18n="visitTime">معدل وقت الزيارات</span> <span id="m_visitTime" class="text-brand-500">0</span>
             </div>
+            <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
+           <span data-i18n="newClient">عميل جديد</span> <span id="m_newClient" class="text-brand-500">0</span>
+           </div>
+           <div class="flex justify-between font-bold text-brand-700 border-b border-brand-100/50 pb-1">
+          <span data-i18n="firstVisit">معدل اول زيارة</span> <span id="m_firstVisit" class="text-brand-500">0</span>
+          </div>
+          <div class="flex justify-between font-bold text-brand-700 pb-1">
+           <span data-i18n="lastVisit">معدل اخر زيارة</span> <span id="m_lastVisit" class="text-brand-500">0</span>
+          </div>
         </div>
         <h3 class="text-center text-xl font-bold text-brand-900 mt-4 bg-brand-100 rounded-lg py-1" data-i18n="topAgents">أفضل 3 مندوبين</h3>
         <div id="topAgentsList" class="space-y-2 bg-gradient-to-r from-brand-100/30 to-white p-4 rounded-xl border border-brand-100 shadow-sm"></div>
@@ -396,7 +405,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqNMaEP6GVu_vWm6a_1NI9ETQjS0HO1WeNFtlkihPWJ_TrxNMwp2t0ju6lFDXcDh-O/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQNUuBuIJMxss6SaBxngxthWEkQ5HtXgJYehhlfGo2DrWQRFEEdQ10ic5c3VcZpGmc/exec";
 let agent = null;
 let notifInterval;
 
@@ -416,7 +425,10 @@ const i18n = {
         receiptPhoto: "صورة الوصل",
         cameraCapture: "التقاط صورة",
         cameraCaptured: "✅ تم الالتقاط - اضغط للتغيير",
-        uploadingPhoto: "جاري رفع الصورة...",
+        uploadingPhoto: "جاري رفع الصورة...", 
+        newClient: "عميل جديد",
+        firstVisit: "معدل اول زيارة",
+        lastVisit: "معدل اخر زيارة",
     },
     ku: {
         loading: "نوێ دەکرێتەوە...", agent: "نوێنەر", password: "تێپەڕەوشە",
@@ -432,6 +444,9 @@ const i18n = {
         cameraCapture: "وێنە بگرە",
         cameraCaptured: "✅ وێنە گیرا - بۆ گۆڕین کرتە بکە",
         uploadingPhoto: "وێنە بارکردن...",
+        newClient: "کڕیاری نوێ",
+        firstVisit: "تێکڕای یەکەم سەردان",
+        lastVisit: "تێکڕای کۆتا سەردان",
     }
 };
 
@@ -744,6 +759,9 @@ function showGaugeModal() {
     document.getElementById('m_visitsMonth').innerText = agent.visitsMonth || "0";
     document.getElementById('m_visitsDay').innerText = agent.visitsDay || "0";
     document.getElementById('m_visitTime').innerText = agent.visitTime || "0";
+    document.getElementById('m_newClient').innerText    = agent.newClient   || "0";
+    document.getElementById('m_firstVisit').innerText   = agent.firstVisit  || "0";
+    document.getElementById('m_lastVisit').innerText    = agent.lastVisit   || "0";
     const list = document.getElementById('topAgentsList');
     list.innerHTML = "";
     if (agent.topAgents && agent.topAgents.length > 0) {
@@ -763,7 +781,6 @@ function showGaugeModal() {
 }
 
 function closeGaugeModal() {
-    document.getElementById('gaugeModal').classList.remove('hidden');
     document.getElementById('gaugeModal').classList.add('hidden');
 }
 
