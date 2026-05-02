@@ -535,7 +535,7 @@ function updateUI() {
         }, 100);
     });
 
-    document.getElementById('salary').innerText = agent.salary.toLocaleString() + " DQ";
+    document.getElementById('salary').innerText = agent.salary.toLocaleString() + "";
 
     // ─── لون الراتب حسب نسبة المبيعات ───
     const salesPct = agent.sales / (agent.sGoal || 10000);
